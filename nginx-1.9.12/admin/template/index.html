@@ -1,0 +1,36 @@
+<style>
+    .container {
+        width: 1600px;
+        max-width: none !important;
+    }
+    li{
+        font-family: opensans-l;
+    }
+    </style>
+
+<div class="container">
+    <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <span class="navbar-brand" style="color:white;background: black">AdminConsole</span>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a href ui-sref=".searchUser">Search User</a></li>
+					<li ui-sref-active="active"><a href ui-sref=".searchCom">Search Company</a></li>
+                    <li ui-sref-active="active"><a href ui-sref=".addUser">Add User</a></li>
+					<li ui-sref-active="active"><a href ui-sref=".addCom">Add Company</a></li>
+					<li ui-sref-active="active"><a href ui-sref=".overview">Overview</a></li>
+                    <!--<li class="{{isAnalysisTab()?'active':''}}">-->
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href>-->
+                          <!--Analysis <span class="caret"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu" role="menu">-->
+                            <!--<li><a href ui-sref=".money-summary">Money Summary</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+		      </ul>
+                <button class="btn btn-lg btn-primary btn-block" style = "width:10%; float: right" ng-click="logout()">Logout</button>
+            </div><!--/.nav-collapse -->
+    </nav>
+    <div class="jumbotron" ui-view></div>
+</div>

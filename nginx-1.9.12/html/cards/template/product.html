@@ -1,0 +1,82 @@
+<style>
+a{ color:#000;}
+a:link{ color:#000;}
+</style>
+
+<div id="mainContent">
+<div class="layout">
+	<div class="header">
+		<div class="left">
+			<a href="" class="ico-home">产品展示</a>
+		</div>
+		<div class="right">
+			<a href="" class="ico-share">分享</a>
+		</div>
+	</div>
+	<div class="wx-wrap">
+		<div class="wx-pros">
+			<div class="head">
+				<h2 style="line-height: 55px;">产品展示</h2>
+			</div>
+			<div class="body">
+				<ul>
+					<li ng-repeat = "(id, product) in products">
+						<a href="">
+							<div class="img">
+								<img ng-src="{{product.prod_image_url}}"/>
+							</div>
+							<h2>{{product.prod_name}} -{{product.prod_price}}RMB</h2>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="ewmform js-ewmform" id="qrImageBlock" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫码收藏我的微名片</div>
+		<div class="ewmform-summary">
+			<div class="ewm-thumbnail" id="qrcode"></div>
+			<img class="ewm-thumbnail" id="comPubImage" style="display: none;" src="{{com_pub_qrImg_url}}"></img>
+		</div>
+		<div class="ewmform-des">
+			<a ng-click="ewmsm(1)"><span id="ewm_select1" class="select_yes">扫描公众号</span></a>
+			<a ng-click="ewmsm(2)"><span id="ewm_select2" class="select_no">扫描微名片</span></a>
+			<a ng-click="ewmsm(3)"><span id="ewm_select3" class="select_no">扫描到通讯录</span></a>
+		</div>
+		<div class="ewmform-des" id="ewm_sel_hint">扫描二维码</div>
+	</div>
+</div>
+
+<div class="ewmform js-ewmform" id="myqrImage" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫码加我的微信</div>
+		<div class="ewmform-summary"><img class="ewm-thumbnail" src="{{wechat_qrcode_url}}"/></div>
+	</div>
+</div>
+
+</div>
+
+
+<div id="footerContent">
+	<div class="footer-wp">
+		<div class="footer">
+			<div class="text" style="border-right: #e3e3e3 solid 1px;">
+				<h4>收藏</h4>
+			</div>
+			<div class="text" style="border-right: #e3e3e3 solid 1px;">
+				<a ng-click="ewm_hide()">二维码</a>
+			</div>
+			<div class="text">
+				<h4>帮助及链接</h4>
+			</div>
+		</div>
+    </div>
+	<!--//footer-->
+</div>
+

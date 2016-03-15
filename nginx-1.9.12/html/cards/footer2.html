@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+<meta name="format-detection" content="telephone=no" />
+<title>FOOTER设计，注意源文件中功能说明</title>
+<link rel="stylesheet" type="text/css" href="http://www.wyxokokok.com/css/mb/common1.css">					<!--别人的css可以不用，用自己的-->
+<link rel="stylesheet" type="text/css" href="http://www.wyxokokok.com/css/fdfoot.css">
+<link rel="stylesheet" type="text/css" href="http://www.wyxokokok.com/css/mb/mb_03.css">
+</head>
+
+<body>
+
+
+<div class="infobar">
+	<ul class="infobar-inner">
+		<li class="content-item">
+			<a href="javascript:" class="content-item-anchor">
+				<div class="content-item-hgroup">
+					<h2 class="content-item-title">名片夹</h2>
+					<h3 class="content-item-summary">9</h3>
+				</div>
+			</a>
+		</li>
+		<li class="content-item">
+			<a href="javascript:;" id="noWxQrcode" class="content-item-anchor">
+				<div class="content-item-thumb">
+					<img src="" class="content-item-thumbnail avatarPic rolling">
+				</div>
+			</a>
+		</li>
+		<li class="content-item js-ewm">
+			<a href="javascript:;" class="content-item-anchor">
+				<div class="content-item-thumb"><img src="http://res2.eqianxian.com/app_static/app/cardtemplate/images/icon-qrcode.png" class="content-item-thumbnail"></div>
+			</a>
+		</li>
+		<li class="content-item">
+			<a href="javascript:;" class="content-item-anchor">
+				<div class="content-item-hgroup">
+					<h2 class="content-item-title">武义紫冠蓝莓庄园</h2>
+					<h3 class="content-item-summary">庄主</h3>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+
+
+<div class="feature js-sharebox toggle-transition-1s">
+	<div class="feature-favor js-collect feature-w33" id="div_hy_fx">
+		<i class="ico-favor"></i> <span class="vertical-m" id="collectBtnTx">收藏</span>							<!--收藏按钮，点击后将该名片保存入九维网站的个人账户下
+																																（个人账户通过微信关注九维公众号产生，未关注先要求关注），
+																																收藏后收藏图标变为红色，文字变为“已收藏”。
+																																在九维公众号内通过菜单可以访问自己收藏的所有名片。
+																																微信打开某名片时如何检测到该用户已经建立了该名片的收藏关系？-->
+	</div>	
+	<div class="feature-favor feature-w33">
+		<a href="javascript:ewm_hide();"><i class="ico-card"></i><span class="vertical-m">二维码</span></a>		<!--二维码按钮，点击后显示二维码图层，
+																																包括名片企业的公众号二维码，名片本身的二维码，名片中通讯录信息的二维码（扫描可直接加入通讯录）
+																																该图层可关闭（右上角关闭×按钮）
+																																-->
+	</div>
+	<div class="feature-more js-featureMore feature-w33">
+		<i class="ico-more"></i> <span class="vertical-m">帮助及链接</span>											<!--连接九维网站（或者九维的公众号也可）网站包使用帮助、分类信息等（该页面需要设计制作）-->
+	</div>
+</div>
+
+<div class="ewmform js-ewmform" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫码收藏我的微名片</div>
+		<div class="ewmform-summary"><img class="ewm-thumbnail" id="ewmThumbnail" src="http://qr.wyxokokok.com/qr.php?size=4&amp;data=http://www.wyxokokok.com/mp/nineware"></div>
+		<div class="ewmform-des">
+			<a href="javascript:" onclick="ewmsm(1);"><span id="ewm_select1" class="select_yes">扫描微名片</span></a>
+			<a href="javascript:" onclick="ewmsm(2);"><span id="ewm_select2" class="select_no">扫描到通讯录</span></a>
+		</div>
+		<div class="ewmform-des" id="ewm_sel_hint">手机打开扫描二维码分享给好友<br>可印在纸质名片和宣传单上</div>
+	</div>
+</div>
+
+<div class="body_bg" id="body-img" style="background:url(/img/mb/bg/mpbg_02.jpg) no-repeat 0 0; top:0;  background-size: cover; width:100%;height:100%;  position:fixed"></div>
+<div class="bigmask" id="bigmask"></div>
+
+<script type="text/javascript">
+	function ewmsm(aa){
+		if(aa==1){
+			$("#ewmThumbnail").attr("src","http://qr.wyxokokok.com/qr.php?size=4&data=http://www.wyxokokok.com/mp/nineware");
+			$("#ewm_select1").removeClass("select_no").addClass("select_yes");
+			$("#ewm_select2").removeClass("select_yes").addClass("select_no");
+			$("#ewm_sel_hint").html("手机打开扫描二维码分享给好友<br>可印在纸质名片和宣传单上");
+		}else{
+			$("#ewmThumbnail").attr("src","http://qr.wyxokokok.com/qr.php?size=3&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3A%E5%B7%A7%E5%85%8B%E5%8A%9B%0ATITLE%3A%E7%BB%8F%E7%90%86%0ATEL%3BCELL%3A18888888888%0ATEL%3BWORK;VOICE%3A05000000%0AADR%3BWORK%3A%0AORG%3A%E5%B8%82%E5%9C%BA%E9%83%A8%0AEND%3AVCARD");
+			$("#ewm_select1").removeClass("select_yes").addClass("select_no");
+			$("#ewm_select2").removeClass("select_no").addClass("select_yes");
+			$("#ewm_sel_hint").html("手机打开扫描二维码添加到通讯录<br>可印在纸质名片和宣传单上");
+		}
+	}
+	function uesrgz(){
+		htmlobj=$.ajax({url:"/pub/savepubdata.asp?c_lb=11&c_w=2&c_hyuid=nineware&c_hyname=%E5%B7%A7%E5%85%8B%E5%8A%9B&c_hysex=%E5%A5%B3&c_hypic=http://img.wyxokokok.com/usercard/userlogo/2015/nineware_mbpic.png&c_myuid=&c_myname=&c_mysex=&c_mypic=&c_ac=af4aab36eb5ea03dac344f34839b9eda&c_acdate=2015-10-04",async:false});
+		var tmp_t = htmlobj.responseText;
+		if((tmp_t=="1")||(tmp_t=="2")){
+			$("#div_hy_fx").html("<a class=\"feature-link focus-us\" href=\"javascript:uesrfx();\"><i class=\"ico-share\"></i> <span class=\"vertical-m\" id=\"collectBtnTx\">分享</span></a>");
+		}
+	}
+	function uesrfx(){
+		window.location='http://mp.weixin.qq.com/s?__biz=MzAwMjE0MzQwNQ==&mid=202135212&idx=1&sn=6df89d0d35dffede84f27aead0599726#rd';}
+	function wx_hide(shide){document.getElementById('div_wx_guide').style.display=shide;}
+
+	var tmp_erm=1;
+	function ewm_hide(){$('.ewmform').show();if(tmp_erm==1){tmp_erm=0;$("#ewmThumbnail").attr('src', $("#ewmThumbnail").attr('data-src')).removeAttr('data-src');}}
+	$(".js-ewmClose").click(function(){$('.ewmform').hide();});
+	$(".js-featureMore, .item-back, #bigmask").click(function(){$("html,body").toggleClass("oh");togglePage();sidenavtip();});
+	function togglePage(){$(".js-moreList,.item-back").toggleClass("more-list-sh");$("#bigmask").toggleClass("show");}
+	function sidenavtip(){
+		if(!$.readCookie("sidenavtip")){
+			$.writeCookie("sidenavtip","1","4800h");
+			var $sidenavtip = $("#sidenavtip");
+			$sidenavtip
+					.show()
+					.click(function(){
+						$(this).hide();
+					});
+		}
+	}
+
+	function wxhbts(){if(confirm("TA还没有设置微名片红包，我来设置名片红包？")){window.location="/help/wmphbsm.asp?nineware";}}
+</script>
+
+
+</body>

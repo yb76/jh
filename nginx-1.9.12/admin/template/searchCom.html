@@ -1,0 +1,227 @@
+<style>
+    .bs-example {
+        border-radius: 6px 6px 6px 6px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    .search-title{
+        width: 100%;
+        height: 24px;
+        line-height: 22px;
+        font-size: 18px;
+        color: #666666;
+        font-family: 'opensans-l';
+        margin-top: 12px;
+    }
+    .select2 > .select2-choice.ui-select-match {
+        /* Because of the inclusion of Bootstrap */
+        height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown {
+        top: 36px;
+    }
+    .select2-search input {
+        font-family: opensans;
+    }
+    .ui-select-focusser{
+        height: 0px;
+    }
+    .dropdown-menu li {
+        margin: 0;
+        width: 300px;
+    }
+    input{
+        border:0;
+        outline: none;
+        padding: 0;
+    }
+    .local_ul{
+        padding: 0;
+        list-style: none;
+    }
+    .local_ul .local_li{
+        margin: 10px 0;
+        border-bottom: 1px solid #cccccc;
+        height: 60px;
+    }
+    ul{
+        padding: 0;
+        list-style: none;
+    }
+    li{
+        list-style: none;
+    }
+    .bgBL {
+        border: 1px solid #26ACDF;
+        border-radius: 32px;
+        /* box-shadow: 0 2px 1px #eaeaea; */
+        color: #26ACDF;
+        display: inline-block;
+        float: left;
+        font-size: 12px;
+        height: 22px;
+        line-height: 20px;
+        margin: 18px 10px 0 0;
+        padding: 0 15px;
+        text-align: center;
+    }
+    .jumbotron p {
+        margin-bottom: 0;
+    }
+    .submit-button{
+        border-radius: 6px;
+        margin-left: 10px;
+        height: 34px;
+        width: 60px;
+        text-align: center;
+        line-height: 34px;
+        background-color: #15a4fa;
+        color: white;
+        text-decoration:none;
+    }
+    .smallButton{
+        font-size: 16px;
+        border-radius: 24px;
+        padding: 8px 24px;
+        height: 30px;
+        line-height: 10px;
+        color: white;
+    }
+    .smallButton:hover{
+        text-decoration: none;
+    }
+    .row{
+        margin-left:0;
+        margin-right: 0;
+    }
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="./css/select2.css">
+<div class="bs-example" style="background-color: #e7e7e7">
+    <ul class="local_ul" style="display: inline-flex">
+        <li style="border-right: 0px solid #ccc; border-left: 0px solid #ccc;">
+            <h2 class="search-title">搜索公司</h2>
+            <input class="form-control" type="text" ng-model="searchContext" style="width:300px" placeholder="company id/company name" />
+            <p style="text-align: center;margin-top: 10px">
+                <button class="smallButton bgBlue"  style="border:none;" ng-click="searchCom()">search</button>
+            </p>
+         </li>
+    </ul>
+	
+	<div class="row" style="background-color: #e0e0e0;height: auto" ng-repeat="(com_id, user) in userList">
+        <li style="list-style: none;height: 130px;border-bottom: 1px solid #ccc; display: inline-flex">
+            <div style="width: 100px;float: left;">
+                <p style="text-align: center">
+				<img style="margin:10px;width: 80px;height: 80px;border: 1px solid #ccc;border-radius: 50px;" ng-src="{{user.faceUrl}}">
+				</p>
+            </div>
+            <div style="margin:20px;float:left;width:320px;position: relative;border-right: 0px solid #ccc">
+                <p ng-bind="user.com_id"></p>
+				<button ng-hide="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="editCom()">Edit</button>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="modifyCom()">Submit</button>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="cancelModify()">Cancel</button>
+            </div>
+        </li>
+		
+		<li style="list-style: none;height: 130px;border-bottom: 1px solid #ccc; display: inline-flex">
+            <div style="width: 100px;float: left;">
+                <p style="text-align: center">
+				<img style="margin:10px;width: 80px;height: 80px;border: 1px solid #ccc;border-radius: 0px;" ng-src="{{user.com_pub_qrImg_url}}">
+				</p>
+            </div>
+            <div style="margin:20px;float:left;width:320px;position: relative;border-right: 0px solid #ccc">
+				<h5>公司公众号二维码图片</h5>
+                <input ng-show="isEdit" id='weixinImage' type='file'>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="modifyWeixinQrCodeImage()">Submit</button>
+            </div>
+        </li>
+		
+    <ul class="local_ul" style="margin-top: 20px">
+        <li class="local_li">
+			<div class="col-md-4"><b>公司名:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.com_name"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.com_name"></span>
+			</div>
+			<div class="col-md-4"><b>公司名英文:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.com_name_en"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.com_name_en"></span>
+			</div>
+			<div class="col-md-4"><b>网址:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.com_site"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.com_site"></span>
+			</div>
+        </li>
+		<li class="local_li">
+			<div class="col-md-4"><b>公司地址:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.com_address"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.com_address"></span>
+			</div>
+			<div class="col-md-4"><b>公司地址英文:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.com_address_en"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.com_address_en"></span>
+			</div>
+        </li>
+		<li class="local_li">
+            <div class="col-md-4"><b>公司介绍:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.com_desp"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.com_desp"></span>
+			</div>
+            <div class="col-md-4"><b>公司介绍英文:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.com_desp_en"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.com_desp_en"></span>
+			</div>
+        </li>
+    </ul>
+	
+	<hr style="border-color:#5bc0de;margin:0">
+	
+	<ul class="local_ul" style="margin-top: 20px">
+		<li class="local_li product_li" ng-repeat="(index, product) in productList">
+			<div class="col-md-2"><b>name:&nbsp;</b>
+				<span ng-show="product.isEdit"><input ng-model="product.prod_name"></input></span>
+				<span ng-hide="product.isEdit" ng-bind="product.prod_name"></span>
+			</div>
+			<div class="col-md-2"><b>price:&nbsp;</b>
+				<span ng-show="product.isEdit"><input ng-model="product.prod_price"></input></span>
+				<span ng-hide="product.isEdit" ng-bind="product.prod_price"></span>
+			</div>
+			<div class="col-md-4">
+				<button ng-hide="product.isEdit" class="smallButton bgBlue"  style="border:none;" ng-click="editProduct(index)">Edit</button>
+				<button ng-show="product.isEdit" class="smallButton bgBlue"  style="border:none;" ng-click="editProductSubmit(index)">Submit</button>
+				<button ng-show="product.isEdit" class="smallButton bgBlue"  style="border:none;" ng-click="editProductDelete(index)">Delete</button>
+				<button ng-show="product.isEdit" class="smallButton bgBlue"  style="border:none;" ng-click="editProductCancel(index)">Cancel</button>
+			</div>
+			<div class="col-md-1">
+                <p style="text-align: center">
+				<img style="width: 40px;height: 40px;" ng-src="{{product.prod_image_url}}">
+				</p>
+            </div>
+			<div class="col-md-3"><b>image:&nbsp;</b>
+				<button class="smallButton bgBlue"  style="border:none;" ng-click="uploadProductImage(index)">Upload</button>
+                <input class='productImage' type='file'>
+            </div>
+		</li>
+	</ul>
+	
+	<hr style="border-color:#5bc0de;margin:0">
+	
+	<ul class="local_ul" style="margin-top: 20px">
+		<li class="local_li">
+			<div class="col-md-2"><b>name:&nbsp;</b>
+				<span><input ng-model="newProduct.prod_name"></input></span>
+			</div>
+			<div class="col-md-2"><b>price:&nbsp;</b>
+				<span><input ng-model="newProduct.prod_price"></input></span>
+			</div>
+			<div class="col-md-4">
+				<button class="smallButton bgBlue"  style="border:none;" ng-click="addProduct()">Add</button>
+			</div>
+			
+		</li>
+	</ul>
+	
+    <hr style="border-color:#5bc0de;margin:0">
+    </div>
+</div>

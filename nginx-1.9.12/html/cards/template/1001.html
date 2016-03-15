@@ -1,0 +1,157 @@
+<style>
+a{ color:#000;}
+a:link{ color:#000;}
+</style>
+
+<div id="mainContent">
+
+<div class="layout">
+	<div class="header">
+		<div class="left">
+			<a ng-click="gotoProduct()" class="ico-home">产品展示</a>
+		</div>
+		<div class="right">
+			<a href="#" class="ico-share">分享</a>
+		</div>
+	</div>
+	<div class="cards-wrap">
+		<div class="card">
+			<div class="text">
+				<div class="name">
+					<big>{{name}}</big>{{title_pos}}
+				</div>
+				<h2>{{com_name}}</h2>
+				<dl>
+					<dd>传真号码：{{fax}}</dd>
+					<dd><a href="{{com_site}}">公司网站：{{com_site}}</a></dd>
+					<dd><a href="mailto:{{email}}">邮箱地址：{{email}}</a></dd>
+					<dd>地       址：{{com_addr}}</dd>
+				</dl>
+			</div>
+			<div class="meta">
+				<dl>
+					<dd>
+					<a href="http://wpa.qq.com/msgrd?v=1&uin={{qq_no}}">
+						<i><img src="../img/mp2.png"/></i>
+						<h2>{{qq_no}}</h2>
+					</a>
+					</dd>
+					<dd>
+					<a ng-click="show_wechat()">
+						<i><img src="../img/mp3.png"/></i>
+						<h2>{{wechat_no}}</h2>
+					</a>
+					</dd>
+					<dd>
+					<a href="tel://{{phone}}">
+						<i><img src="../img/mp4.png"/></i>
+						<h2>{{phone}}</h2>
+					</a>
+					</dd>
+					<dd>
+					<a href="tel://{{mobile}}">
+						<i><img src="../img/mp5.png"/></i>
+						<h2>{{mobile}}</h2>
+					</a>
+					</dd>
+				</dl>
+				<div class="tip">{{desc}} <br/>
+				<a href="#" class="more">产品展示</a>
+				</div>
+			</div>
+		</div>
+		<div class="card card2">
+			<div class="text">
+				<div class="name">
+					<big>{{name_en}}</big>{{title_pos_en}}
+				</div>
+				<h2>{{com_name_en}}</h2>
+				<dl>
+					<dd>FAX：{{fax}}</dd>
+					<dd><a href="{{com_site}}">Website：{{com_site}}</a></dd>
+					<dd><a href="mailto:{{email}}">E-mail：{{email}}</a></dd>
+					<dd>Address：{{com_addr_en}}</dd>
+				</dl>
+			</div>
+			<div class="meta">
+				<dl>
+					<dd>
+					<a href="http://wpa.qq.com/msgrd?v=1&uin={{qq_no}}">
+						<i><img src="../img/mp2.png"/></i>
+						<h2>{{qq_no}}</h2>
+					</a>
+					</dd>
+					<dd>
+					<a ng-click="show_wechat()">
+						<i><img src="../img/mp3.png"/></i>
+						<h2>{{wechat_no}}</h2>
+					</a>
+					</dd>
+					<dd>
+					<a href="tel://{{phone}}">
+						<i><img src="../img/mp4.png"/></i>
+						<h2>{{phone}}</h2>
+					</a>
+					</dd>
+					<dd>
+					<a href="tel://{{mobile}}">
+						<i><img src="../img/mp5.png"/></i>
+						<h2>{{mobile}}</h2>
+					</a>
+					</dd>
+				</dl>
+				<div class="tip">{{desc_en}} <br/>
+				<a href="#" class="more">More</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="ewmform js-ewmform" id="qrImageBlock" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫码收藏我的微名片</div>
+		<div class="ewmform-summary">
+			<div class="ewm-thumbnail" id="qrcode"></div>
+			<img class="ewm-thumbnail" id="comPubImage" style="display: none;" src="{{com_pub_qrImg_url}}"></img>
+		</div>
+		<div class="ewmform-des">
+			<a ng-click="ewmsm(1)"><span id="ewm_select1" class="select_yes">扫描公众号</span></a>
+			<a ng-click="ewmsm(2)"><span id="ewm_select2" class="select_no">扫描微名片</span></a>
+			<a ng-click="ewmsm(3)"><span id="ewm_select3" class="select_no">扫描到通讯录</span></a>
+		</div>
+		<div class="ewmform-des" id="ewm_sel_hint">扫描二维码</div>
+	</div>
+</div>
+
+<div class="ewmform js-ewmform" id="myqrImage" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫码加我的微信</div>
+		<div class="ewmform-summary"><img class="ewm-thumbnail" src="{{wechat_qrcode_url}}"/></div>
+	</div>
+</div>
+
+</div>
+
+
+<div id="footerContent">
+	<div class="footer-wp">
+		<div class="footer">
+			<div class="text" style="border-right: #e3e3e3 solid 1px;">
+				<h4>收藏</h4>
+			</div>
+			<div class="text" style="border-right: #e3e3e3 solid 1px;">
+				<a ng-click="ewm_hide()">二维码</a>
+			</div>
+			<div class="text">
+				<h4>帮助及链接</h4>
+			</div>
+		</div>
+    </div>
+	<!--//footer-->
+</div>
+
+
+

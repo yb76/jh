@@ -1,0 +1,81 @@
+<style>
+a{ color:#000;}
+a:link{ color:#000;}
+</style>
+
+<div id="mainContent">
+<div class="layout">
+	<div class="card">
+		<div class="img">
+			<img src="../img/lc2.jpg"/>
+		</div>
+		<div class="nav">
+			<ul>
+				<li class="s1"><a href="#"><img src="../img/lc2.png"/></a></li>
+				<li class="s2"><a href="#"><img src="../img/lc3.png"/></a></li>
+				<li class="s3"><a href="#"><img src="../img/lc4.png"/></a></li>
+				<li class="s4"><a href="#"><img src="../img/lc5.png"/></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="card">
+		<div class="img">
+			<img src="../img/lc3.jpg"/>
+		</div>
+		<div class="nav2">
+			<ul>
+				<li><a href="#"><img src="../img/lc6.png" /></a></li>
+				<li><a href="#"><img src="../img/lc7.png" /></a></li>
+				<li><a href="#"><img src="../img/lc8.png" /></a></li>
+				<li><a href="#"><img src="../img/lc9.png" /></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="ewmform js-ewmform" id="qrImageBlock" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫码收藏我的微名片</div>
+		<div class="ewmform-summary">
+			<div class="ewm-thumbnail" id="qrcode"></div>
+			<img class="ewm-thumbnail" id="comPubImage" style="display: none;" src="{{com_pub_qrImg_url}}"></img>
+		</div>
+		<div class="ewmform-des">
+			<a ng-click="ewmsm(1)"><span id="ewm_select1" class="select_yes">扫描公众号</span></a>
+			<a ng-click="ewmsm(2)"><span id="ewm_select2" class="select_no">扫描微名片</span></a>
+			<a ng-click="ewmsm(3)"><span id="ewm_select3" class="select_no">扫描到通讯录</span></a>
+		</div>
+		<div class="ewmform-des" id="ewm_sel_hint">扫描二维码</div>
+	</div>
+</div>
+
+<div class="ewmform js-ewmform" id="myqrImage" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫码加我的微信</div>
+		<div class="ewmform-summary"><img class="ewm-thumbnail" src="{{wechat_qrcode_url}}"/></div>
+	</div>
+</div>
+
+</div>
+
+
+<div id="footerContent">
+	<div class="footer-wp">
+		<div class="footer">
+			<div class="text" style="border-right: #e3e3e3 solid 1px;">
+				<h4>收藏</h4>
+			</div>
+			<div class="text" style="border-right: #e3e3e3 solid 1px;">
+				<a ng-click="ewm_hide()">二维码</a>
+			</div>
+			<div class="text">
+				<h4>帮助及链接</h4>
+			</div>
+		</div>
+    </div>
+	<!--//footer-->
+</div>
+

@@ -1,0 +1,300 @@
+<style>
+    .bs-example {
+        border-radius: 6px 6px 6px 6px;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    .search-title{
+        width: 100%;
+        height: 24px;
+        line-height: 22px;
+        font-size: 18px;
+        color: #666666;
+        font-family: 'opensans-l';
+        margin-top: 12px;
+    }
+    .select2 > .select2-choice.ui-select-match {
+        /* Because of the inclusion of Bootstrap */
+        height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown {
+        top: 36px;
+    }
+    .select2-search input {
+        font-family: opensans;
+    }
+    .ui-select-focusser{
+        height: 0px;
+    }
+    .dropdown-menu li {
+        margin: 0;
+        width: 300px;
+    }
+    input{
+        border:0;
+        outline: none;
+        padding: 0;
+    }
+    .local_ul{
+        padding: 0;
+        list-style: none;
+    }
+    .local_ul .local_li{
+        margin: 10px 0;
+        border-bottom: 1px solid #cccccc;
+        height: 30px;
+    }
+    ul{
+        padding: 0;
+        list-style: none;
+    }
+    li{
+        list-style: none;
+    }
+    .bgBL {
+        border: 1px solid #26ACDF;
+        border-radius: 32px;
+        /* box-shadow: 0 2px 1px #eaeaea; */
+        color: #26ACDF;
+        display: inline-block;
+        float: left;
+        font-size: 12px;
+        height: 22px;
+        line-height: 20px;
+        margin: 18px 10px 0 0;
+        padding: 0 15px;
+        text-align: center;
+    }
+    .jumbotron p {
+        margin-bottom: 0;
+    }
+    .submit-button{
+        border-radius: 6px;
+        margin-left: 10px;
+        height: 34px;
+        width: 60px;
+        text-align: center;
+        line-height: 34px;
+        background-color: #15a4fa;
+        color: white;
+        text-decoration:none;
+    }
+    .smallButton{
+        font-size: 16px;
+        border-radius: 24px;
+        padding: 8px 24px;
+        height: 30px;
+        line-height: 10px;
+        color: white;
+    }
+    .smallButton:hover{
+        text-decoration: none;
+    }
+    .row{
+        margin-left:0;
+        margin-right: 0;
+    }
+	input {margin-top:0px; margin-bottom: 10px;}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="./css/select2.css">
+<div class="bs-example" style="background-color: #e7e7e7">
+    <ul class="local_ul" style="display: inline-flex">
+        <li style="border-right: 0px solid #ccc; border-left: 0px solid #ccc;">
+            <h2 class="search-title">搜索用户</h2>
+            <input class="form-control" type="text" ng-model="searchContext" style="width:300px" placeholder="id/email/mobile/phone" />
+            <p style="text-align: center;margin-top: 10px">
+                <button class="smallButton bgBlue"  style="border:none;" ng-click="searchEmp()">search</button>
+            </p>
+         </li>
+    </ul>
+	
+	<div class="row" style="background-color: #e0e0e0;height: auto" ng-repeat="(id, user) in userList">
+        <li style="list-style: none;height: 130px;border-bottom: 1px solid #ccc; display: block">
+            <div style="width: 100px;float: left;">
+                <p style="text-align: center">
+				<img style="margin:10px;width: 80px;height: 80px;border: 1px solid #ccc;border-radius: 50px;" ng-src="{{user.faceUrl}}">
+				</p>
+            </div>
+            <div style="margin:20px;float:left;width:320px;position: relative;border-right: 0px solid #ccc">
+                <p ng-bind="user.id"></p>
+				<h5 ng-bind="user.encrypId"></h5>
+				<button ng-hide="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="editUser()">Edit</button>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="modifyUser()">Submit</button>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="cancelModify()">Cancel</button>
+            </div>
+        </li>
+		
+		
+		<li style="list-style: none;height: 130px;border-bottom: 1px solid #ccc; display: inline-flex">
+            <div style="width: 100px;float: left;">
+                <p style="text-align: center">
+				<img style="margin:10px;width: 80px;height: 80px;border: 1px solid #ccc;border-radius: 0px;" id='weixinImageImg' ng-src="{{user.wechat_qrcode_url}}">
+				</p>
+            </div>
+            <div style="margin:20px;float:left;width:320px;position: relative;border-right: 0px solid #ccc">
+				<h5>用户微信二维码图片</h5>
+                <input ng-show="isEdit" id='weixinImage' type='file'>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="modifyWeixinQrCodeImage()">Submit</button>
+            </div>
+        </li>
+		
+		<li style="list-style: none;height: 130px;border-bottom: 1px solid #ccc; display: inline-flex">
+            <div style="width: 100px;float: left;">
+                <p style="text-align: center">
+				<img style="margin:10px;width: 80px;height: 80px;border: 1px solid #ccc;border-radius: 0px;" ng-src="{{user.bg_image1_url}}">
+				</p>
+            </div>
+            <div style="margin:20px;float:left;width:320px;position: relative;border-right: 0px solid #ccc">
+				<h5>用户背景图1</h5>
+                <input ng-show="isEdit" id='mainBgImage1' type='file'>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="modifyBgImage1()">Submit</button>
+            </div>
+			
+			<div style="width: 100px;float: left;">
+                <p style="text-align: center">
+				<img style="margin:10px;width: 80px;height: 80px;border: 1px solid #ccc;border-radius: 0px;" ng-src="{{user.bg_image2_url}}">
+				</p>
+            </div>
+            <div style="margin:20px;float:left;width:320px;position: relative;border-right: 0px solid #ccc">
+				<h5>用户背景图2</h5>
+                <input ng-show="isEdit" id='mainBgImage2' type='file'>
+				<button ng-show="isEdit" class="smallButton bgBlue" style="border:none;" ng-click="modifyBgImage2()">Submit</button>
+            </div>
+        </li>
+		
+    <ul class="local_ul" style="margin-top: 20px">
+        <li class="local_li">
+            <div class="col-md-4"><b>姓名:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.name"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.name"></span>
+			</div>
+			<div class="col-md-4"><b>姓名英文:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.name_en"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.name_en"></span>
+			</div>
+			<div class="col-md-4"><b>职位:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.title_pos"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.title_pos"></span>
+			</div>
+        </li>
+        <li class="local_li">
+			<div class="col-md-4"><b>职位英文:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.title_pos_en"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.title_pos_en"></span>
+			</div>
+			<div class="col-md-4"><b>邮箱:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.email"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.email"></span>
+			</div>
+			<div class="col-md-4"><b>手机:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.mobile"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.mobile"></span>
+			</div>
+        </li>
+        <li class="local_li">
+			<div class="col-md-4"><b>电话:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.phone"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.phone"></span>
+			</div>
+			<div class="col-md-4"><b>传真:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.fax"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.fax"></span>
+			</div>
+			<div class="col-md-4"><b>QQ:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.qq_no"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.qq_no"></span>
+			</div>
+        </li>
+		<li class="local_li">
+			<div class="col-md-4"><b>微信:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.wechat_no"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.wechat_no"></span>
+			</div>
+			<div class="col-md-4"><b>模板:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.template"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.template"></span>
+			</div>
+        </li>
+		
+        <li class="local_li">
+			<div class="col-md-4"><b>公司名:&nbsp;</b>
+				<span ng-show="isComEdit"><input ng-model="user.com_name"></input></span>
+				<span ng-hide="isComEdit" ng-bind="user.com_name"></span>
+			</div>
+			<div class="col-md-4"><b>公司名英文:&nbsp;</b>
+				<span ng-show="isComEdit"><input ng-model="user.com_name_en"></input></span>
+				<span ng-hide="isComEdit" ng-bind="user.com_name_en"></span>
+			</div>
+			<div class="col-md-4"><b>网址:&nbsp;</b>
+				<span ng-show="isComEdit"><input ng-model="user.com_site"></input></span>
+				<span ng-hide="isComEdit" ng-bind="user.com_site"></span>
+			</div>
+        </li>
+		<li class="local_li">
+			<div class="col-md-4"><b>公司地址:&nbsp;</b>
+				<span ng-show="isComEdit"><input ng-model="user.com_address"></input></span>
+				<span ng-hide="isComEdit" ng-bind="user.com_address"></span>
+			</div>
+			<div class="col-md-4"><b>公司地址英文:&nbsp;</b>
+				<span ng-show="isComEdit"><input ng-model="user.com_address_en"></input></span>
+				<span ng-hide="isComEdit" ng-bind="user.com_address_en"></span>
+			</div>
+        </li>
+		<br/>
+		<h5 style="margin-left:10px;color:red;">备注link类型:1,公司首页; 2,产品页; 3,淘宝; 4,京东; 5,阿里巴巴; 6,天猫; 7,一号店; 8,义乌购; 9,地图; 99,默认</h5>
+		<li class="local_li">
+            <div class="col-md-4"><b>Link1:&nbsp;</b>
+			</div>
+			<div class="col-md-4"><b>Type:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link1_type"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link1_type"></span>
+			</div>
+			<div class="col-md-4"><b>Url:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link1_url"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link1_url"></span>
+			</div>
+        </li>
+		<li class="local_li">
+            <div class="col-md-4"><b>Link2:&nbsp;</b>
+			</div>
+			<div class="col-md-4"><b>Type:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link2_type"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link2_type"></span>
+			</div>
+			<div class="col-md-4"><b>Url:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link2_url"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link2_url"></span>
+			</div>
+        </li>
+		<li class="local_li">
+            <div class="col-md-4"><b>Link3:&nbsp;</b>
+			</div>
+			<div class="col-md-4"><b>Type:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link3_type"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link3_type"></span>
+			</div>
+			<div class="col-md-4"><b>Url:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link3_url"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link3_url"></span>
+			</div>
+        </li>
+		<li class="local_li">
+            <div class="col-md-4"><b>Link4:&nbsp;</b>
+			</div>
+			<div class="col-md-4"><b>Type:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link4_type"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link4_type"></span>
+			</div>
+			<div class="col-md-4"><b>Url:&nbsp;</b>
+				<span ng-show="isEdit"><input ng-model="user.link4_url"></input></span>
+				<span ng-hide="isEdit" ng-bind="user.link4_url"></span>
+			</div>
+        </li>
+		
+    </ul>
+    <hr style="border-color:#5bc0de;margin:0">
+    </div>
+</div>

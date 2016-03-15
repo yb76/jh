@@ -1,0 +1,183 @@
+
+
+<style>
+    /*.bs-example:after{*/
+        /*content: 'Withdraw List';*/
+    /*}*/
+    .bs-example{
+        border-radius: 6px 6px 6px 6px;
+    }
+    .search-line{
+        margin-bottom: 20px;
+    }
+    .table-header-line{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-top: 1px solid darkgrey;
+        border-bottom: 2px solid darkgrey;
+    }
+    .table-line{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid darkgrey;
+    }
+    .table-line-over{
+        background-color: #ffffff;
+    }
+    .top-container{
+        padding: 15px 15px 15px 15px;
+    }
+
+    .cashpinas-balance{
+        margin-bottom: 15px;
+    }
+</style>
+<div class='bs-example' style='background: #e7e7e7'>
+    <div class='top-container'>
+        <form class='row search-line'>
+            <div class='col-md-2'>
+                <select class='form-control' ng-model='partnerId' ng-change='search()'>
+                    <option value=''>ALL</option>
+                    <option value='1'>Cashpinas</option>
+                    <option value='2'>Sec-Bank</option>
+                    <option value='3'>Transfast</option>
+                </select>
+            </div>
+            <div class='col-md-1'><input type='text' class='form-control' placeHolder='Ref Nos' ng-model='refNo' /></div>
+            <div class='col-md-1'><input type='text' class='form-control' placeHolder='Task Ids' ng-model='taskId' /></div>
+            <div class='col-md-1'><input type='text' class='form-control' placeHolder='Phone NO.' ng-model='phoneNumber' /></div>
+            <div class="col-md-2"><input type='text' class='form-control' placeHolder='Company Code' ng-model='companyCode' /></div>
+            <div class='col-md-4'>
+                <input type='submit' class='btn btn-primary' ng-click='search()' value='Go' />&nbsp;
+                <span>Page: {{pageNo()}}</span>&nbsp;
+                <a href class='label label-default' ng-click='firstPage()'>First</a>&nbsp;
+                <a href class='label label-default' ng-click='prevPage()'>Prev</a>&nbsp;
+                <a href class='label label-default' ng-click='nextPage()'>Next</a>
+            </div>
+            <div class="col-md-1">
+                <button type='button' class='btn btn-primary' ng-csv="transactions" csv-header="getHeader()" csv-column-order="getOrder()" field-separator="," decimal-separator="." filename="transaction.csv" >Export</button>
+            </div>
+        </form>
+        <div class='row table-header-line'>
+            <div class='col-md-1'><b>User Id</b></div>
+            <div class='col-md-1'><b>Task Id</b></div>
+            <!--<div class='col-md-2'><b>Sender Name</b></div>-->
+            <div class='col-md-2'><b>Ref No</b></div>
+            <div class='col-md-2'><b>Create Time</b></div>
+            <div class='col-md-2'><b>Status</b></div>
+            <div class='col-md-2'><b>Outlet Name</b></div>
+            <div class='col-md-1'><b>Amount</b></div>
+            <div class='col-md-1'></div>
+        </div>
+        <div class='record-info' ng-repeat='(i, record) in transactions'>
+            <div withdraw-task class='row table-line' ng-mouseleave='leaveRecord($event)' ng-mouseover='enterRecord($event)'>
+                <div class='col-md-1'>{{record.uid}}</div>
+                <div class='col-md-1'>{{record.taskId}}</div>
+                <!--<div class='col-md-2'>{{record.firstName}} {{record.middleName}} {{record.lastName}}</div>-->
+                <div class='col-md-2'>{{record.refNo}}</div>
+                <div class='col-md-2'>{{record.createTime | date:'yyyy-MM-dd HH:mm'}}</div>
+                <div class='col-md-2'>{{statusDesc(record.status)}}</div>
+                <div class='col-md-2'>{{record.orgName}}</div>
+                <div class='col-md-1'>{{record.toAmount | number:2}}</div>
+                <div class='col-md-1'><a href class='label label-success' ng-click='record.unCollapse=!record.unCollapse'>show details</a></div>
+            </div>
+            <div class='row record-detail' collapse='!record.unCollapse'>
+                <div class='col-md-1'></div>
+                <div class='col-md-10 col-lg-10'>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>User Id:</b></div><div class='col-md-4'>{{record.uid}}</div>
+                        <div class='col-md-2'><b>First Name:</b></div><div class='col-md-4'>{{record.firstName}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Middle Name:</b></div><div class='col-md-4'>{{record.middleName}}</div>
+                        <div class='col-md-2'><b>Last Name:</b></div><div class='col-md-4'>{{record.lastName}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Task Id:</b></div><div class='col-md-4'>{{record.taskId}}</div>
+                        <div class='col-md-2'><b>Ref No:</b></div><div class='col-md-4'>{{record.refNo}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Create Time:</b></div><div class='col-md-4'>{{record.createTime | date:'yyyy-MM-dd HH:mm'}}</div>
+                        <div class='col-md-2'><b>Update Time:</b></div><div class='col-md-4'>{{record.updateTime | date:'yyyy-MM-dd HH:mm'}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Status:</b></div><div class='col-md-4'>{{statusDesc(record.status)}}</div>
+                        <div class='col-md-2'><b>Status Msg:</b></div><div class='col-md-4'>{{record.statusMsg}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Partner:</b></div><div class='col-md-4'>{{partnerDesc(record.partnerId)}}</div>
+                        <div class='col-md-2'><b>Partner Status:</b></div><div class='col-md-4'>{{record.partnerStatus}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Outlet Name:</b></div><div class='col-md-4'>{{record.orgName}}</div>
+                        <div class='col-md-2'><b>Bank Acct:</b></div><div class='col-md-4'>{{record.bankAcct}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>To Amount:</b></div><div class='col-md-4'>{{record.toAmount | number:2}}</div>
+                        <div class='col-md-2'><b>Service Fee:</b></div><div class='col-md-4'>{{record.fee}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Benef First Name:</b></div>
+                        <div class='col-md-4'>
+                            <span ng-hide='showBenefEdit(record)'>{{record.benefFirstName}}</span>
+                            <input type='text' class='form-control' ng-show='showBenefEdit(record)' ng-model='record.benefFirstNameEdit' />
+                        </div>
+                        <div class='col-md-2'><b>Benef Mid Name:</b></div>
+                        <div class='col-md-4'>
+                            <span ng-hide='showBenefEdit(record)'>{{record.benefMidName}}</span>
+                            <input type='text' class='form-control' ng-show='showBenefEdit(record)' ng-model='record.benefMidNameEdit' />
+                        </div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Benef Last Name:</b></div>
+                        <div class='col-md-4'>
+                            <span ng-hide='showBenefEdit(record)'>{{record.benefLastName}}</span>
+                            <input type='text' class='form-control' ng-show='showBenefEdit(record)' ng-model='record.benefLastNameEdit' />
+                        </div>
+                        <div class='col-md-2'><b>Benef Phone:</b></div>
+                        <div class='col-md-4'>
+                            <span ng-hide='showBenefEdit(record)'>{{record.benefPhoneCountryCode + ' ' + record.benefPhoneNumber}}</span>
+                            <input type='text' class='form-control' ng-show='showBenefEdit(record)' ng-model='record.benefPhoneNumberEdit' />
+                        </div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Benef Address:</b></div>
+                        <div class='col-md-4'>
+                            <span ng-hide='showBenefEdit(record)'>{{record.benefAddr}}</span>
+                            <input type='text' class='form-control' ng-show='showBenefEdit(record)' ng-model='record.benefAddrEdit' />
+                        </div>
+                        <div class='col-md-2'><b>TransactionType:</b></div>
+                        <div class='col-md-4'>
+                            <span >{{orgTypeDesc(record.orgType)}}</span>
+                        </div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-1'></div>
+                        <div class='col-md-1'>
+                            <a href class='label label-primary' ng-show='showBenefEditButton(record)' ng-click='toggleBenefEdit(record)'>Edit Benef</a>
+                            <a href class='label label-danger' ng-show='showBenefEdit(record)' ng-click='toggleBenefEdit(record)'>Cancel Edit</a>
+                        </div>
+                        <div class='col-md-1'>
+                            <a href class='label label-success' ng-show='showBenefSubmit(record)' ng-click='submitBenefEdit(record)'>Submit Benef</a>
+                            <a href class='label label-success' ng-show='showBenefSubmitting(record)'>Submitting...</a>
+                        </div>
+                        <div class='col-md-3'></div>
+                        <div class='col-md-1'>
+                            <a href class='label label-default' ng-show='showCancelTaskButton(record)' ng-click='cancelTask(record)'>Cancel Task</a>
+                            <a href class='label label-default' ng-show='showCancelingTaskButton(record)' >Canceling...</a>
+                        </div>
+                        <div class='col-md-1'>
+                            <a href class='label label-danger' ng-show='showRejectTaskButton(record)' ng-click='rejectTask(record)'>Reject Task</a>
+                            <a href class='label label-danger' ng-show='showRejectingTaskButton(record)' >Rejecting...</a>
+                        </div>
+                        <div class='col-md-1'>
+                            <a href class='label label-success' ng-show='showFinishTaskButton(record)' ng-click='finishTask(record)'>Finish Task</a>
+                            <a href class='label label-success' ng-show='showFinishingTaskButton(record)' >Finishing...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-1'></div>
+            </div>
+        </div>
+    </div>
+</div>

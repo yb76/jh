@@ -1,0 +1,35 @@
+<style>
+    .ngdialog.ngdialog-theme-default .ngdialog-content{
+        width:400px;
+        background:#ffffff;
+    }
+    .ngdialog.ngdialog-theme-default {
+        padding-top: 300px;
+    }
+    .ngdialog-message h3 {
+	    font-size: 18px;
+	    text-align: center;
+    }
+    .ngdialog.ngdialog-theme-plain .ngdialog-content{
+        border-radius: 6px;
+    }
+    .smallButton{
+        font-size: 16px;
+        border-radius: 24px;
+        padding: 8px 24px;
+        color: white;
+    }
+    .smallButton:hover{
+        text-decoration: none;
+    }
+</style>
+
+<div style="width:100%;padding-top: 20px;">
+    <div style="width:100%;padding: 20px 20px 20px 20px;">
+        <div class="ngdialog-message">
+            <h3>{{notice}}</h3>
+            <!--<p>Test content for</p>-->
+        </div>
+    </div>
+    <div style="text-align: center;width: 100%;padding:10px 0px 10px 0px"><a class="smallButton bgBlue" ng-click="closeThisDialog()">CLOSE</a> </div>
+</div>

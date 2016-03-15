@@ -1,0 +1,195 @@
+@charset "utf-8";
+/*--------------------------
+ 模块：底部菜单
+---------------------------*/
+.feature {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    color: #00a5e0;
+    text-align: center;
+    background: rgba(255,255,255,.8);
+    border-top: 1px solid #DDDDDF;
+    display: block;
+    z-index: 100;
+    font-size: 0;
+    white-space: nowrap;
+}
+.feature .feature-link{
+    color: #00a5e0;
+}
+.feature .feature-w33{
+    width: 33.3%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.feature .feature-w66{
+    width: 66.6%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.feature .feature-favor {
+    display: inline-block;
+    height: 45px;
+    border-right: 1px solid #DDDDDF;
+}
+.feature .feature-more {
+    height: 45px;
+    display: inline-block;
+}
+.feature .ico-favor {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    background: url(/img/mb/base/ico-favor.png) no-repeat;
+    background-size: 18px;
+    vertical-align: middle;
+}
+.feature .ico-share {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    display: inline-block;
+    background: url(/img/mb/base/ico-share.png) no-repeat;
+    background-size: 15px;
+    vertical-align: middle;
+}
+.feature .ico-more {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    display: inline-block;
+    background: url(/img/mb/base/ico-more.png) no-repeat;
+    background-size: 15px;
+    vertical-align: middle;
+}
+.feature .ico-back {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    display: inline-block;
+    background: url(/img/mb/base/ico-back.png) no-repeat;
+    background-size: 15px;
+    vertical-align: middle;
+}
+.feature .ico-card {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    background: url(/img/mb/base/ico-card.png) no-repeat;
+    background-size: 18px;
+    vertical-align: middle;
+}
+.feature .ico-task {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    background: url(/img/mb/base/icon-task.png) no-repeat;
+    background-size: 18px;
+    vertical-align: middle;
+}
+.feature .icon-edit {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    display: inline-block;
+    background: url(/img/mb/base/icon-edit.png) no-repeat;
+    background-size: 15px;
+    vertical-align: middle;
+}
+.toggle-transition-1s{
+    transition: left .5s;
+    -webkit-transition: left .5s;
+}
+.more-list-wrap{
+    position: fixed;
+    top: 0;
+    right: -164px;
+    z-index: 1000;
+    width: 160px;
+    height: 100%;
+    background: rgba(241,240,246,1);
+    border-left: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    transition: right .5s;
+    -webkit-transition: right .5s;
+}
+.more-list-wrap .more-list {
+    width: inherit;
+    height: inherit;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.more-list-wrap .more-list-ul{
+    padding-bottom: 55px;
+}
+.more-list-sh{
+    right: 0;
+}
+.more-list-wrap .more-list.cur{
+    right:0;
+}
+.more-list-wrap .more-list .more-list-item {
+    position: relative;
+    line-height: 22px;
+    text-align: left;
+    padding: 12px 0 12px 25px;
+    background: #fff;
+}
+.btop{
+    border-top: 1px solid rgb(241,240,246);
+}
+.more-list-wrap .more-list-item.item-back{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 139px;
+    height: 45px;
+    text-align: left;
+    border-top: 1px solid #C4C4C4;
+    line-height: 45px;
+    padding-left: 20px;
+    background: #fff;
+    color:#3e3e3e;
+    font-size: 16px;
+}
+.more-list-wrap .more-list .more-list-item .more-item-anchor {
+    display: block;
+    line-height: 22px;
+    color: #3e3e3e;
+    font-size: 16px;
+}
+.more-list-wrap .more-list .more-list-item .more-avatar-thumbnail{
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin-left:3px;
+    border: 2px solid #fff;
+    border-radius: 32px;
+    -webkit-border-radius: 32px;
+}
+.more-list-wrap .more-list .more-list-item .icon-right{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -10px;
+}
+.more-list-wrap .more-list .more-list-item:last-child{
+    border-bottom: 0;
+}
+/* 分享屏蔽 */
+.hide{ display:none; width:100%; height:100%; position:absolute; top:0px; right:0px; z-index:999; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#7F000000', endColorstr='#7F000000');background:rgba(0,0,0,0.5);}
+.hide img{ float:right;}

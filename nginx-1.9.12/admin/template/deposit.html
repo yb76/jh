@@ -1,0 +1,86 @@
+
+
+<style>
+    /*.bs-example:after{*/
+        /*content: 'Withdraw List';*/
+    /*}*/
+    .bs-example{
+        border-radius: 6px 6px 6px 6px;
+    }
+    .search-line{
+        margin-bottom: 20px;
+    }
+    .table-header-line{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-top: 1px solid darkgrey;
+        border-bottom: 2px solid darkgrey;
+    }
+    .table-line{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid darkgrey;
+    }
+    .table-line-over{
+        background-color: #ffffff;
+    }
+    .top-container{
+        padding: 15px 15px 15px 15px;
+    }
+    .record-detail{
+        padding: 20px 15px 40px 15px;
+        background-color: #efefef;
+    }
+    .record-detail-line{
+        border-bottom: 1px solid darkgrey;
+        min-height: 25px;
+    }
+    .cashpinas-balance{
+        margin-bottom: 15px;
+    }
+</style>
+<div class='bs-example' style='background: #e7e7e7'>
+    <div class='top-container'>
+        <form class='row search-line'>
+
+            <div class='col-md-1'><input type='text' class='form-control' placeHolder='Silvrr Id' ng-model='silvrrId' /></div>
+            <div class='col-md-2'><input type='text' class='form-control' placeHolder='Deposit Code' ng-model='code' /></div>
+            <div class='col-md-1'><input type='text' class='form-control' placeHolder='Amount' ng-model='amount' /></div>
+            <div class='col-md-4'>
+                <input type='submit' class='btn btn-primary' ng-click='deposit()' value='DEPOSIT' />&nbsp;
+                <span>Page: {{pageNo+1}}</span>&nbsp;
+                <a href class='label label-default' ng-click='firstPage()'>First</a>&nbsp;
+                <a href class='label label-default' ng-click='prevPage()'>Prev</a>&nbsp;
+                <a href class='label label-default' ng-click='nextPage()'>Next</a>&nbsp;&nbsp;
+                <a href class='label label-default' ng-click='nextPage()'>Refresh</a>
+            </div>
+        </form>
+
+        <table class="table table-hover" style="margin-top: 35px;border-top: 2px solid darkgrey">
+            <thead>
+            <tr>
+                <th style='width:8%'>Company Code</th>
+                <th style='width:13%'>Company Name</th>
+                <th style='width:13%'>Company SilvrrId</th>
+                <th style='width:10%'>Deposit Code</th>
+                <th style='width:10%'>Deposit Amount</th>
+                <th style='width:13%'>Deposit Time</th>
+                <th style='width:12%'>Balance</th>
+                <th style='width:13%'>Currency</th>
+            </tr>
+            </thead>
+            <tbody style='height: 300px; overflow-y: scroll'>
+            <tr ng-repeat='(i, code) in list'>
+                <td>{{code.companyCode}}</td>
+                <td>{{code.companyName}}</td>
+                <td>{{code.silvrrId}}</td>
+                <td>{{code.code}}</td>
+                <td>{{code.amount | number: 2}}</td>
+                <td>{{code.time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{code.balance}}</td>
+                <td>{{code.currency=='3'?'PHP':'UNKNOW'}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

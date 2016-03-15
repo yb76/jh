@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* CSS Document */
+body,div,ul,li,a,span,img,h2,br{ margin:0; padding:0;}
+body{ font-size:14px; font-family: "Microsoft YaHei"; background:#fff; position:relative; margin:0 auto; margin-bottom:100px;}
+li{ list-style:none;}
+img{ border:none;}
+a{ text-decoration:none;}
+a:link{ color:#000;}
+
+.music{ position:absolute; left:210px; top:-132px;}
+.icon-ewm {position: absolute;top: -122px!important;right: 10px;z-index: 100;}
+#body-img{ position:fixed; top:0; left:0; width:100%;z-index:-2;}
+.top{ width:100%; position:relative; margin-top:100px;}
+.bg{ position:absolute; top:0; left:0; height:550px; width:100%; z-index:-1;}
+.tx{ width:80px; height:80px; position:absolute; top:6px; left:30px;}
+.tx img{ 	width: 80px;
+    height: 80px;
+    display: block;
+    border-radius: 60px;
+    -webkit-border-radius: 60px;
+    -moz-box-shadow:1px 1px 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow:1px 1px 4px rgba(0, 0, 0, 0.5);
+    box-shadow:1px 1px 4px rgba(0, 0, 0, 0.5);}
+.nc{ color:#000; padding: 20px 5px 30px 120px;margin:190px 0 0 0;
+    background: -webkit-linear-gradient(rgba(243,228,10,0.6),rgba(247, 225, 146, 0.7));
+    background: -o-linear-gradient(rgba(243,228,10,0.6),rgba(247, 225, 146, 0.7));
+    background: -moz-linear-gradient(rgba(243,228,10,0.6),rgba(247, 225, 146, 0.7));
+    background: linear-gradient(rgba(243,228,10,0.6),rgba(247, 225, 146, 0.7));
+
+    min-height: 50px;}
+.grgy{ text-indent:2em; line-height:20px; color:#000; height:40px; overflow:hidden; text-align:left;}
+.grxx{ color:#FFF; text-align:center;}
+.lis li{ background: rgba(247, 225, 146, 0.7); min-height:30px; color: #0d1c2a;line-height:32px;width:100%; font-size:14px; font-family:"微软雅黑"; border-bottom:1px solid #aaa; }
+#gsmc img{height:22px!important;width:26px!important;padding-left: 2px!important;margin-right: 12px!important;}
+.lis li img{ vertical-align:middle; margin-left:20px; margin-right:10px; width:30px;height:30px;}
+.gsjl{
+    background: -webkit-linear-gradient(rgba(247, 225, 146, 0.7),rgba(243,228,10,0.6));
+    background: -o-linear-gradient(rgba(247, 225, 146, 0.7),rgba(243,228,10,0.6));
+    background: -moz-linear-gradient(rgba(247, 225, 146, 0.7),rgba(243,228,10,0.6));
+    background: linear-gradient(rgba(247, 225, 146, 0.7),rgba(243,228,10,0.6));
+}
+.gsjl_nr{color:#000; line-height:24px; text-indent:2em; padding-left: 5px;}
+.bt_title{ height:30px; line-height:30px;display:inline-block; color:#000; font-size:16px; width:100%;}
+.mp_dhl{ width:96%; padding:3px 2% 0px 2%; background:#eee; float:left;}
+.mp_dhl li{ width:50%; float:left; text-align:center; height:30px; line-height:30px;}
+.mp_dhl_wxz{ background:#eee; color:#333;cursor:pointer; font-size:16px; }
+.mp_dhl_xz{ background:#FFF; color:#333;cursor:pointer;font-weight:700; font-size:16px;}
+.mp_wz_tp{ text-align:center;}
+.mp_wz_tp img{ height:50px; border:1px solid #999; border-radius:3px; width:85%}
+.mp_wz_table{ margin-top:8px; float:left; padding-bottom:5px; border-bottom:1px solid #ccc;}
+.mp_wz_table tr{ height:50px; line-height:50px;}
+.mp_wz_bt{  font-weight:700; font-size:16px; height:30px; line-height:30px;overflow:hidden; text-overflow: ellipsis;}
+.mp_wz_nrxx{ font-size:12px; color:#999; line-height:20px;}
+.bottom{ margin-left:3%; width:94%; text-align:center; height:35px; line-height:35px; background:#0CF; display:inline-block; color:#FFF; font-size:18px; font-weight:700; border-radius:5px; margin-top:5px; margin-bottom:10px;}
+.swa_copy{width: 100%;min-height: 30px;text-align: center;color:#000;display: inline-block;}
+.swa_copy a{color:blue;}
+.lis a,.lis li a{
+    color: #0d1c2a!important;
+}
+
+.swa_bohao{
+    top:90px;
+    right:20px;
+}
+/*悬挂红包*/
+.red_bag{
+    left:0;
+}
+.red_bag_top{
+    height:140px;
+}
+.red_bag_img{
+    top:140px;
+}

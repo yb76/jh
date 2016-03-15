@@ -1,0 +1,197 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<title>FOOTER样例</title>
+	<meta name="ROBOTS" content="NONE">
+	<meta name="keywords" content="电子名片,微名片,{{com_name}}">
+	<meta name="description" content="{{com_name}}的电子名片，行业{{com_category}}">
+	<link rel="stylesheet" type="text/css" href="http://www.wyxokokok.com/css/mb/common1.css">
+	<link rel="stylesheet" type="text/css" href="http://www.wyxokokok.com/css/fdfoot.css">
+	<link rel="stylesheet" type="text/css" href="http://www.wyxokokok.com/css/mb/mb_03.css">
+	<link rel="stylesheet" type="text/css" href="css/flytip.css">
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/footer.js" type="text/javascript"></script>
+	<script src="js/flytip.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+
+
+<!-- footer -->
+<div class="feature js-sharebox toggle-transition-1s">
+	<div class="feature-favor js-collect feature-w33" id="div_hy_fx">
+		<i class="ico-favor"></i> <span class="vertical-m" id="collectBtnTx">收藏</span>
+	</div>
+	<div class="feature-favor feature-w33">
+		<a class="feature-link focus-us"  href="javascript:ewm_hide();"><i class="ico-card"></i> <span class="vertical-m">二维码</span></a>
+	</div>
+	<div class="feature-more js-featureMore feature-w33">
+		<i class="ico-more"></i> <span class="vertical-m">帮助及链接</span>
+	</div>
+</div>
+
+<!-- more -->
+<div class="more-list-wrap js-moreList">
+	<!--div class="more-list">
+		<ul class="more-list-ul">
+			<li class="more-list-item btop"><a href="http://www.wyxokokok.com/help/mpsm.html" class="more-item-anchor"><span class="vertical-m">使用说明</span><i class="icon-right"></i></a></li>
+			<li class="more-list-item btop"><a href="http://www.wyxokokok.com/help/mpal.html" class="more-item-anchor"><span class="vertical-m">经典案例</span><i class="icon-right"></i></a></li>
+			<li class="more-list-item btop"><a href="http://www.wyxokokok.com/down/mobdown.html" class="more-item-anchor"><span class="vertical-m">APP下载</span><i class="icon-right"></i></a></li>
+			<li class="more-list-item btop"><a href="http://www.wyxokokok.com/" class="more-item-anchor"><span class="vertical-m">官方网站</span><i class="icon-right"></i></a></li>
+		</ul>
+	</div-->
+	<div class="more-list-item item-back"><a href="javascript:;" class="more-item-anchor"><i class="ico-back"></i> <span class="vertical-m">返 回</span></a></div>
+</div>
+
+<!-- ewm -->
+<div class="ewmform js-ewmform" style="display: none;">
+	<div class="ewmform-box">
+		<code class="ewmform-close js-ewmClose"></code>
+		<div class="ewmform-title">扫描或长按二维码识别</div>
+		<div class="ewmform-summary"><img class="ewm-thumbnail" id="ewmThumbnail" src="http://qr.wyxokokok.com/qr.php?size=4&amp;data=http://www.wyxokokok.com/mp/nineware"></div>
+		<div class="ewmform-des">
+			<a href="javascript:" onclick="ewmsm(1);"><span id="ewm_select1" class="select_yes">本名片</span></a>
+			<a href="javascript:" onclick="ewmsm(2);"><span id="ewm_select2" class="select_no">公众号</span></a>
+			<a href="javascript:" onclick="ewmsm(3);"><span id="ewm_select3" class="select_no">保存到手机通讯录</span></a>
+		</div>
+		<div class="ewmform-des" id="ewm_sel_hint">扫描或长按二维码识别</div>
+	</div>
+</div>
+<div class="bigmask" id="bigmask"></div>
+
+
+<!--div class="sidenav-tip" id="sidenavtip"></div>
+
+<div id="div_wx_guide" class="guide hide" onclick="wx_hide('none');"><img src="http://www.wyxokokok.com/img/png/guide_wx_hint.png" width="100%"></div>
+
+
+<!-- background pic here -->
+<div class="body_bg" id="body-img" style="background:url(http://) no-repeat 0 0; top:0;  background-size: cover; width:100%;height:100%;  position:fixed"></div>
+
+
+
+<script type="text/javascript">
+	function ewmsm(aa){
+		if(aa==1){
+			$("#ewmThumbnail").attr("src","#");    																	/*此处本名片二维码图片*/
+			$("#ewm_select1").removeClass("select_no").addClass("select_yes");
+			$("#ewm_select2").removeClass("select_yes").addClass("select_no");
+			$("#ewm_select3").removeClass("select_yes").addClass("select_no");
+		}else if(aa==2){																								/*此处用户的公众号二维码图片*/
+			$("#ewmThumbnail").attr("src","http://qr.wyxokokok.com/qr.php?size=4&data=http://www.wyxokokok.com/mp/nineware");
+			$("#ewm_select1").removeClass("select_yes").addClass("select_no");
+			$("#ewm_select2").removeClass("select_no").addClass("select_yes");
+			$("#ewm_select3").removeClass("select_yes").addClass("select_no");
+		}else{																											/*此处包含通讯录信息的二维码图片*/
+			$("#ewmThumbnail").attr("src","http://qr.wyxokokok.com/qr.php?size=3&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3A%E5%B7%A7%E5%85%8B%E5%8A%9B%0ATITLE%3A%E7%BB%8F%E7%90%86%0ATEL%3BCELL%3A18888888888%0ATEL%3BWORK;VOICE%3A05000000%0AADR%3BWORK%3A%0AORG%3A%E5%B8%82%E5%9C%BA%E9%83%A8%0AEND%3AVCARD");
+			$("#ewm_select1").removeClass("select_yes").addClass("select_no");
+			$("#ewm_select2").removeClass("select_yes").addClass("select_no");
+			$("#ewm_select3").removeClass("select_no").addClass("select_yes");
+		}
+	}
+	function uesrgz(){
+		htmlobj=$.ajax({url:"/pub/savepubdata.asp?c_lb=11&c_w=2&c_hyuid=nineware&c_hyname=%E5%B7%A7%E5%85%8B%E5%8A%9B&c_hysex=%E5%A5%B3&c_hypic=http://img.wyxokokok.com/usercard/userlogo/2015/nineware_mbpic.png&c_myuid=&c_myname=&c_mysex=&c_mypic=&c_ac=af4aab36eb5ea03dac344f34839b9eda&c_acdate=2015-10-04",async:false});
+		var tmp_t = htmlobj.responseText;
+		if((tmp_t=="1")||(tmp_t=="2")){
+			$("#div_hy_fx").html("<a class=\"feature-link focus-us\" href=\"javascript:uesrfx();\"><i class=\"ico-share\"></i> <span class=\"vertical-m\" id=\"collectBtnTx\">分享</span></a>");
+		}
+	}
+	function uesrfx(){
+		window.location='http://mp.weixin.qq.com/s?__biz=MzAwMjE0MzQwNQ==&mid=202135212&idx=1&sn=6df89d0d35dffede84f27aead0599726#rd';}
+	function wx_hide(shide){document.getElementById('div_wx_guide').style.display=shide;}
+
+	var tmp_erm=1;
+	function ewm_hide(){$('.ewmform').show();if(tmp_erm==1){tmp_erm=0;$("#ewmThumbnail").attr('src', $("#ewmThumbnail").attr('data-src')).removeAttr('data-src');}}
+	$(".js-ewmClose").click(function(){$('.ewmform').hide();});
+	$(".js-featureMore, .item-back, #bigmask").click(function(){$("html,body").toggleClass("oh");togglePage();sidenavtip();});
+	function togglePage(){$(".js-moreList,.item-back").toggleClass("more-list-sh");$("#bigmask").toggleClass("show");}
+	function sidenavtip(){
+		if(!$.readCookie("sidenavtip")){
+			$.writeCookie("sidenavtip","1","4800h");
+			var $sidenavtip = $("#sidenavtip");
+			$sidenavtip
+					.show()
+					.click(function(){
+						$(this).hide();
+					});
+		}
+	}
+
+	function wxhbts(){if(confirm("TA还没有设置微名片红包，我来设置名片红包？")){window.location="/help/wmphbsm.asp?nineware";}}
+</script>
+<script src="http://www.wyxokokok.com/js/sha1.js"></script>
+<script src="http://www.wyxokokok.com/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var tmp_ticket = "sM4AOVdWfPE4DxkXGEs8VJsg4NWZanhpUBvvMC_DPbWdK_HxY1WpXZAoOzPU1uRlZ_cgfRLzHKooX_2f9XpXxw";
+	var tmp_timestamp = "1429596577";
+	var tmp_nonceStr = "EjPXy6Q8JD0KU0HC";
+	var tmp_url = window.document.location.href;
+	var tmp_sign = "jsapi_ticket="+tmp_ticket+"&noncestr="+tmp_nonceStr+"&timestamp="+tmp_timestamp+"&url="+tmp_url;
+	var tmp_signature = hex_sha1(tmp_sign);
+
+	wx.config({
+		debug: false, // 开启调试模式
+		appId: "wx634a41ef0a8477ac", // 必填，公众号的唯一标识
+		timestamp: tmp_timestamp, // 必填，生成签名的时间戳
+		nonceStr: tmp_nonceStr, // 必填，生成签名的随机串
+		signature:tmp_signature,// 必填，签名，见附录1
+		jsApiList: ["onMenuShareQQ","onMenuShareTimeline","onMenuShareAppMessage","onMenuShareQQ","onMenuShareWeibo"] // 必填，需要使用的JS接口
+	});
+	var shareObj={
+		title:"巧克力的微名片",
+		desc:"您好！我是巧克力，这是我的微名片，请多指教！",
+		link:"http://www.wyxokokok.com/mp/nineware",
+		imgUrl:'http://img.wyxokokok.com/usercard/userlogo/2015/nineware_mbpic.png',
+		type: '',
+		dataUrl:'',
+		success: function () {
+			//alert("分享成功！");
+		}
+	}
+	wx.ready(function() {
+		wx.onMenuShareTimeline(shareObj);
+		wx.onMenuShareAppMessage(shareObj);
+		wx.onMenuShareQQ(shareObj);
+		wx.onMenuShareWeibo(shareObj);
+		wx.showOptionMenu();
+		wx.hideMenuItems({
+			menuList: ["menuItem:share:qq","menuItem:share:weiboApp","menuItem:favorite","menuItem:share:facebook","menuItem:copyUrl","menuItem:openWithQQBrowser","menuItem:openWithSafari","menuItem:share:email"] //要隐藏的菜单项
+		});
+	});
+</script>
+<script type="text/javascript">
+	$("#div_text").find("img").each(function(i){$(this).imgLoad();});
+	$("#div_img").find("img").each(function(i){$(this).imgLoad({placeholder: '/img/mb/base/mpload.png'});});
+</script>
+
+
+<!--一键拨号>
+<script type="text/javascript">
+	window.onscroll=function(){
+		var oBj=document.getElementById('bohao');
+		var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+		startMove(parseInt((document.documentElement.clientHeight-oBj.offsetHeight)/4+scrollTop));
+	};
+
+	var timer=null;
+	function startMove(iTarget){
+		var oBj=document.getElementById('bohao');
+		clearInterval(timer);
+		timer=setInterval(function(){
+			var speed=(iTarget-oBj.offsetTop)/4;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+			if(iTarget==oBj.offsetTop){
+				clearInterval(timer);
+			}else{
+				oBj.style.top=oBj.offsetTop+speed+'px';
+			}
+		},30);
+	}
+</script-->
+
+
+</body></html>

@@ -1,0 +1,163 @@
+
+
+<style>
+    /*.bs-example:after{*/
+        /*content: 'Withdraw List';*/
+    /*}*/
+    .bs-example{
+        border-radius: 6px 6px 6px 6px;
+    }
+    .search-line{
+        margin-bottom: 20px;
+    }
+    .table-header-line{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-top: 1px solid darkgrey;
+        border-bottom: 2px solid darkgrey;
+    }
+    .table-line{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid darkgrey;
+    }
+    .table-line-over{
+        background-color: #ffffff;
+    }
+    .top-container{
+        padding: 15px 15px 15px 15px;
+    }
+    .record-detail{
+        padding: 20px 15px 40px 15px;
+        background-color: #efefef;
+    }
+    .record-detail-line{
+        border-bottom: 1px solid darkgrey;
+        min-height: 25px;
+    }
+    .cashpinas-balance{
+        margin-bottom: 15px;
+    }
+</style>
+<div class='bs-example' style='background: #e7e7e7'>
+    <div class='top-container'>
+        <form class='row search-line'>
+
+            <div class='col-md-2'><input type='text' class='form-control' placeHolder='Name' ng-model='name' /></div>
+            <div class='col-md-1'><input type='text' class='form-control' placeHolder='Code' ng-model='code' /></div>
+            <div class='col-md-4'>
+                <input type='submit' class='btn btn-primary' ng-click='search()' value='SEARCH' />&nbsp;
+                <span>Page: {{pageNo+1}}</span>&nbsp;
+                <a href class='label label-default' ng-click='firstPage()'>First</a>&nbsp;
+                <a href class='label label-default' ng-click='prevPage()'>Prev</a>&nbsp;
+                <a href class='label label-default' ng-click='nextPage()'>Next</a>&nbsp;&nbsp;
+                <a href class='label label-default' ng-click='refresh()'>Refresh</a>
+            </div>
+            <div class="col-md-4"><button type='button' class='btn btn-default' style='float: right' ng-click='openRegisterWin()'>Register Company</button></div>
+        </form>
+
+
+        <div class='row table-header-line'>
+            <div class='col-md-1'><b>Code</b></div>
+            <div class='col-md-2'><b>Name</b></div>
+            <div class='col-md-2'><b>Email</b></div>
+            <div class='col-md-2'><b>Phone</b></div>
+            <div class='col-md-1'><b>Credit Line</b></div>
+            <div class='col-md-2'><b>Balance</b></div>
+            <div class='col-md-1'><b>Status</b></div>
+            <div class='col-md-1'></div>
+        </div>
+        <div class='record-info' ng-repeat='(i, record) in list'>
+            <div class='row table-line' ng-mouseleave='leaveRecord($event)' ng-mouseover='enterRecord($event)'>
+                <div class='col-md-1'>{{record.code}}</div>
+                <div class='col-md-2'>{{record.companyName}}</div>
+                <div class='col-md-2'>{{record.email}}</div>
+                <div class='col-md-2'>{{record.phoneCountryCode}} {{record.phoneNumber}}</div>
+                <div class='col-md-1'>{{record.creditLine | number: 2}}</div>
+                <div class='col-md-2'>{{record.balance | number: 2}}</div>
+                <div class='col-md-1'>{{record.status=='1'?'PENDING':'ACTIVE'}}</div>
+                <div class='col-md-1'><a href class='label label-success' ng-click='record.unCollapse=!record.unCollapse'>show details</a></div>
+            </div>
+            <div class='row record-detail' collapse='!record.unCollapse'>
+                <div class='col-md-1'></div>
+                <div class='col-md-10 col-lg-10'>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Code:</b></div><div class='col-md-4'>{{record.code}}</div>
+                        <div class='col-md-2'><b>Company Name:</b></div><div class='col-md-4'>{{record.companyName}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Company ID:</b></div><div class='col-md-4'>{{record.id}}</div>
+                        <div class='col-md-2'><b>Silvrr ID:</b></div><div class='col-md-4'>{{record.silvrrId}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Email:</b></div><div class='col-md-4'>{{record.email}}</div>
+                        <div class='col-md-2'><b>Phone:</b></div><div class='col-md-4'>{{record.phoneCountryCode}} {{record.phoneNumber}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Credit Line:</b></div><div class='col-md-4'>{{record.creditLine | number: 2}}</div>
+                        <div class='col-md-2'><b>Balance:</b></div><div class='col-md-4'>{{record.balance | number: 2}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Debt:</b></div><div class='col-md-4'>{{record.debt | number:2}}</div>
+                        <div class='col-md-2'><b>Status:</b></div><div class='col-md-4'>{{record.status=='1'?'PENDING':'ACTIVE'}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Register Time:</b></div><div class='col-md-4'>{{record.registerTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                        <div class='col-md-2'><b>Nature:</b></div><div class='col-md-4'>{{record.nature}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Owner Name:</b></div><div class='col-md-4'>{{record.ownerFirstName}} {{record.ownerMiddleName}} {{record.ownerLastName}}</div>
+                        <div class='col-md-2'><b>Tin Number:</b></div><div class='col-md-4'>{{record.tinNumber}}</div>
+                    </div>
+                    <div class='row record-detail-line'>
+                        <div class='col-md-2'><b>Company Size:</b></div><div class='col-md-4'>
+                        {{record.size=='1'?'<10':(record.size=='2'?'10~50':(record.size=='3'?'51~100':(record.size=='4'?'101~200':(record.size=='5'?'>200':''))))}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--<table class="table table-hover" style="margin-top: 35px;border-top: 2px solid darkgrey">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th style='width:8%'>Code</th>-->
+                <!--<th style='width:8%'>SilvrrId</th>-->
+                <!--<th style='width:13%'>Name</th>-->
+                <!--<th style='width:13%'>Email</th>-->
+                <!--<th style='width:10%'>Phone</th>-->
+                <!--<th style='width:10%'>Address</th>-->
+                <!--<th style='width:13%'>Credit Line</th>-->
+                <!--<th style='width:12%'>Balance</th>-->
+                <!--<th style='width:13%'>Debt</th>-->
+                <!--<th style='width:13%'>Register Time</th>-->
+                <!--<th style='width:13%'>Status</th>-->
+                <!--<th style='width:13%'>Nature</th>-->
+                <!--<th style='width:13%'>Owner Name</th>-->
+                <!--<th style='width:13%'>Tin Number</th>-->
+                <!--<th style='width:13%'>Company Size</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody style='height: 300px; overflow-y: scroll'>-->
+            <!--<tr ng-repeat='(i, company) in list'>-->
+                <!--<td>{{company.code}}</td>-->
+                <!--<td>{{company.silvrrId}}</td>-->
+                <!--<td>{{company.companyName}}</td>-->
+                <!--<td>{{company.email}}</td>-->
+                <!--<td>{{company.phoneCountryCode}} {{company.phoneNumber}}</td>-->
+                <!--<td>{{company.address}}</td>-->
+                <!--<td>{{company.creditLine | number: 2}}</td>-->
+                <!--<td>{{company.balance | number: 2}}</td>-->
+                <!--<td>{{company.debt | number: 2}}</td>-->
+                <!--<td>{{company.registerTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>-->
+                <!--<td>{{company.status=='1'?'PENDING':'ACTIVE'}}</td>-->
+                <!--<td>{{company.nature}}</td>-->
+                <!--<td>{{company.ownerFirstName}} {{company.ownerMiddleName}} {{company.ownerLastName}}</td>-->
+                <!--<td>{{company.tinNumber}}</td>-->
+                <!--<td>{{company.size=='1'?'<10':(company.size=='2'?'10~50':(company.size=='3'?'51~100':(company.size=='4'?'101~200':'>200')))}}</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    </div>
+</div>
