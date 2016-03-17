@@ -194,6 +194,22 @@ app.get('/api/json/addProductInfo', function(req, rsp) {
 	require('./addProductInfo.js').run(message);
 });
 
+var wechat = require('wechat');
+var config = {
+  token: 'token9ware8ware',
+  appid: 'wx7a12cef1adb45afa',
+  encodingAESKey: 'NPfQUBpP2nX9RIEgfFzancjxLAoYKCp5JVLC8v1evx2'
+};
+
+app.use('/api/json/wechat', wechat(config, function (req, rsp, next) {
+	console.log(req.url);
+	
+	var message = {};
+	message["req"] = req;
+	message["rsp"] = rsp;
+	message["cgi"] = req.query;
+	require('./cardwechat.js').run(message);
+}));
 
 app.get('/api/json/deleteProductInfo', function(req, rsp) {
 	console.log(req.url);
